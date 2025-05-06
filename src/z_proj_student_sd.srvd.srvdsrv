@@ -1,0 +1,6 @@
+@EndUserText.label: 'service definition for projection student details'
+define service Z_PROJ_STUDENT_SD {
+  expose z_proj_student;
+  expose zproj_stu_attach;
+  expose z_i_student_attach;
+}

@@ -1,0 +1,19 @@
+projection;
+//strict ( 2 ); //Uncomment this line in order to enable strict mode 2. The strict mode has two variants (strict(1), strict(2)) and is prerequisite to be future proof regarding syntax and to be able to release your BO.
+
+define behavior for z_proj_student alias Student
+{
+  use create;
+  use update;
+  use delete;
+
+  use association _attachments { create; }
+}
+
+define behavior for zproj_stu_attach alias Attachments
+{
+  use update;
+  use delete;
+
+  use association _student;
+}
