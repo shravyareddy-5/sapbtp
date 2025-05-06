@@ -1,0 +1,27 @@
+managed implementation in class zbp_i_student_det unique;
+//strict ( 2 ); //Uncomment this line in order to enable strict mode 2. The strict mode has two variants (strict(1), strict(2)) and is prerequisite to be future proof regarding syntax and to be able to release your BO.
+
+define behavior for z_i_student_det alias student
+persistent table zstudent_btp_tab
+lock master
+authorization master ( instance )
+etag master Lastchangedat
+{
+  create;
+  update;
+  delete;
+  field ( readonly ) Id;
+  association _attachments { create; }
+}
+
+define behavior for z_i_student_attach alias Attachments
+persistent table zstudent_attach
+lock dependent by _student
+authorization dependent by _student
+etag master Lastchangedat
+{
+  update;
+  delete;
+  field ( readonly ) attach_id, Id;
+  association _student;
+}

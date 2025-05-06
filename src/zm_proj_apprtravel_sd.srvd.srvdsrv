@@ -1,0 +1,8 @@
+@EndUserText.label: 'Service definition for  APPROVER PROJECTION TRAVEL'
+define service ZM_PROJ_APPRTRAVEL_SD {
+  expose ZM_PROJ_apprTRAVEL;
+  expose ZM_PROJ_apprBOOKING;
+  expose /DMO/I_Customer;
+  expose /DMO/I_Agency;
+  expose I_Currency;
+}
