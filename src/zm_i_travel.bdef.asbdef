@@ -1,0 +1,46 @@
+managed implementation in class zbp_m_i_travel unique;
+//strict ( 2 ); //Uncomment this line in order to enable strict mode 2. The strict mode has two variants (strict(1), strict(2)) and is prerequisite to be future proof regarding syntax and to be able to release your BO.
+
+define behavior for zm_i_travel alias TRAVEL
+persistent table /dmo/travel
+lock master
+authorization master ( instance )
+etag master lastchangedat
+{
+  create;
+  update;
+  delete;
+  field ( features : instance ) travel_id;
+  action createTravelbyTemplate result [1] $self;
+  action ( features : instance ) approveTravel result [1] $self;
+  action ( features : instance ) rejectTravel result [1] $self;
+  validation validateStatus on save {  field status; }
+  association _booking { create; }
+}
+
+define behavior for zm_i_booking alias BOOKING
+persistent table /dmo/booking
+lock dependent by _travel
+authorization dependent by _travel
+etag master lastchangedat
+{
+  update;
+  delete;
+  field ( readonly : update ) travel_id, booking_id;
+  determination calculateTotalFlightPrice on modify { field flight_price, currency_code; }
+  association _travel;
+  association _BOOKINGSUPPL { create; }
+}
+
+define behavior for zm_i_booking_suppl alias BOOKINGSUPPL
+persistent table /dmo/booksuppl_m
+lock dependent by _TRAVEL
+authorization dependent by _TRAVEL
+etag master last_changed_at
+{
+  update;
+  delete;
+  field ( readonly ) travel_id, booking_id, booking_supplement_id;
+  association _TRAVEL;
+  association _BOOKING;
+}

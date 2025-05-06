@@ -1,0 +1,11 @@
+@EndUserText: {
+  label: 'Service Definition for ZC_STUDENT_COPY_TB'
+}
+@ObjectModel: {
+  leadingEntity: {
+    name: 'ZC_STUDENT_COPY_TB'
+  }
+}
+define service ZUI_STUDENT_COPY_TB_O4 provider contracts odata_v4_ui {
+  expose ZC_STUDENT_COPY_TB;
+}

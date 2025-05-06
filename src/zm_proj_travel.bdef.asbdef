@@ -1,0 +1,30 @@
+projection;
+//strict ( 2 ); //Uncomment this line in order to enable strict mode 2. The strict mode has two variants (strict(1), strict(2)) and is prerequisite to be future proof regarding syntax and to be able to release your BO.
+
+define behavior for zm_proj_travel //alias <alias_name>
+{
+  use create;
+  use update;
+  use delete;
+  use action createTravelbyTemplate;
+//  use action validation validateStatus on save;
+  use association _booking { create; }
+}
+
+define behavior for zm_proj_booking //alias <alias_name>
+{
+  use update;
+  use delete;
+
+  use association _travel;
+  use association _BOOKINGSUPPL { create; }
+}
+
+//define behavior for zm_proj_bookingsuppl //alias <alias_name>
+//{
+//  use update;
+//  use delete;
+//
+//  use association _TRAVEL;
+//  use association _BOOKING;
+//}

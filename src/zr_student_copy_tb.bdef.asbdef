@@ -1,0 +1,50 @@
+managed implementation in class ZBP_R_STUDENT_COPY_TB unique;
+strict ( 2 );
+with draft;
+define behavior for ZR_STUDENT_COPY_TB alias ZrStudentCopyTb
+persistent table ZSTUDENT_COPY_TB
+draft table ZSTDNT_COPY_TB_D
+etag master LocalLastChangedAt
+lock master total etag LocalLastChangedAt
+authorization master( global )
+
+{
+  field ( readonly )
+   Id,
+   LocalCreatedBy,
+   LocalCreatedAt,
+   LocalLastChangedAt,
+   LocalLastChangedBy;
+
+  field ( numbering : managed )
+   Id;
+
+
+  create;
+  update;
+  delete;
+
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Edit;
+  draft action Resume;
+  draft determine action Prepare;
+
+  mapping for ZSTUDENT_COPY_TB
+  {
+    Id = id;
+    Firstname = firstname;
+    Lastname = lastname;
+    Age = age;
+    Course = course;
+    Courseduration = courseduration;
+    Status = status;
+    Gender = gender;
+    Dob = dob;
+    LocalCreatedBy = local_created_by;
+    LocalCreatedAt = local_created_at;
+    Lastchangedat = lastchangedat;
+    LocalLastChangedAt = local_last_changed_at;
+    LocalLastChangedBy = local_last_changed_by;
+  }
+}

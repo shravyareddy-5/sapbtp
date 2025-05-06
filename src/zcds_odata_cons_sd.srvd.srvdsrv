@@ -1,0 +1,4 @@
+@EndUserText.label: 'service drfiniton for s4 odata service'
+define service ZCDS_ODATA_CONS_SD {
+  expose zcds_odata_cons;
+}

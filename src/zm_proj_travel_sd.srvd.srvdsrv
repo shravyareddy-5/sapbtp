@@ -1,0 +1,13 @@
+@EndUserText.label: 'service definition for travel projection view'
+define service ZM_PROJ_TRAVEL_SD {
+  expose zm_proj_travel;
+  expose zm_proj_booking;
+  expose zm_proj_bookingsuppl;
+  expose zunm_agency;
+  expose zunm_customer;
+  expose I_Currency;
+  expose I_Country;
+  expose /DMO/I_Agency;
+  expose /DMO/I_Carrier;
+  expose /DMO/I_Connection;
+}
