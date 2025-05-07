@@ -1,0 +1,9 @@
+ @EndUserText.label: 'Access control Grant full access  for product view'
+@MappingRole: true
+define role ZCDS_P_PRODUCT1 {
+    grant
+        select
+            on
+                ZCDS_P_PRODUCT1 where name = 'HP Laptop';
+                   
+}
